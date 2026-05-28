@@ -1,59 +1,140 @@
 # Discord Welcome Bot
 
-A simple Discord bot that sends welcome messages and allows custom embed messages using slash commands.
+Simple Discord bot with welcome messages and a custom embed system using slash commands.
 
 ---
 
 ## What this bot does
 
-- Sends a welcome message when a user joins
-- Lets you set a welcome channel
-- Creates custom embed messages
-- Supports images, thumbnails and optional button links
+* Sends a welcome message when a user joins
+* Lets you set a welcome channel with `/setwelcome`
+* Creates custom embed messages with `/embed`
+* Supports optional image, thumbnail and button link
 
 ---
 
-## Setup Guide
-
-### 1. Create your bot (Discord Developer Portal)
-
-You need to create a bot first:
-
-1. Go to: https://discord.com/developers/applications
-2. Click **"New Application"**
-3. Give it a name
-4. Go to the **Bot** tab
-5. Click **"Add Bot"**
-6. Copy your **Bot Token**
-
-⚠️ Keep your token private. Never share it.
-
----
-
-### 2. Get your Client ID
-
-1. In your application, open **General Information**
-2. Copy the **Application ID**
-3. This is your `CLIENT_ID`
-
----
-
-### 3. Invite bot to your server
-
-1. Go to **OAuth2 → URL Generator**
-2. Select:
-   - `bot`
-   - `applications.commands`
-3. Under Bot Permissions select:
-   - Send Messages
-   - Embed Links
-4. Open the generated link and invite the bot
-
----
-
-## Installation
+## Setup
 
 ### 1. Install dependencies
 
 ```bash
 npm install
+```
+
+---
+
+### 2. Configure bot
+
+Open `index.js` and set:
+
+```js
+const TOKEN = "YOUR_BOT_TOKEN";
+const CLIENT_ID = "YOUR_CLIENT_ID";
+```
+
+---
+
+## Where to get TOKEN and CLIENT_ID
+
+Go to:
+[https://discord.com/developers/applications](https://discord.com/developers/applications)
+
+### Steps:
+
+1. Create a new application
+2. Go to **Bot** tab → create bot → copy TOKEN
+3. Go to **General Information** → copy Application ID (CLIENT_ID)
+
+---
+
+## Invite bot
+
+Go to:
+OAuth2 → URL Generator
+
+Select:
+
+* bot
+* applications.commands
+
+Permissions:
+
+* Send Messages
+* Embed Links
+
+Open generated link and invite bot to your server.
+
+---
+
+## Start bot
+
+```bash
+npm start
+```
+
+If everything works, the bot will go online.
+
+---
+
+## Setup welcome system
+
+In your Discord server:
+
+1. Type `/setwelcome`
+2. Select a channel
+3. Done
+
+Now every new member will get a welcome message.
+
+---
+
+## Commands
+
+### /setwelcome
+
+Sets the channel for welcome messages.
+
+### /embed
+
+Sends a custom embed message.
+
+Options:
+
+* title
+* description
+* image URL
+* thumbnail URL
+* button link (optional)
+
+---
+
+## How data is stored
+
+The bot uses a simple `config.json` file.
+
+Example:
+
+```json
+{
+  "SERVER_ID": "CHANNEL_ID"
+}
+```
+
+Each server has its own welcome channel.
+
+---
+
+## Requirements
+
+* Node.js 18+
+* Discord bot in Developer Portal
+* Permissions:
+
+  * Send Messages
+  * Embed Links
+
+---
+
+## Notes
+
+Keep your token private!
